@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import {UsersService} from "./services/users.service";
-import {AlbumsService} from "./services/albums.service";
+import {User, UsersService} from "./services/users.service";
+import {Album, AlbumsService} from "./services/albums.service";
 import {combineLatestWith, map} from "rxjs";
+
+interface AlbumData extends Album {
+  user: User
+}
 
 @Component({
   selector: 'app-root',
@@ -11,7 +15,7 @@ import {combineLatestWith, map} from "rxjs";
 export class AppComponent {
   title = 'untitled';
 
-  data: any;
+  data: AlbumData[] = [];
 
   constructor(
     private usersService: UsersService,
